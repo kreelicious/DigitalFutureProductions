@@ -24,7 +24,13 @@ class Sanity
         $cacheKey = 'sanity:' . md5($groq . '|' . json_encode($params));
 
         return Cache::remember($cacheKey, $cacheSeconds, function () use ($url, $groq, $params, $token) {
-            $queryParams = array_merge(['query' => $groq], $params);
+            $sanityParams = [];
+            foreach ($params as $key => $value) {
+                $paramKey = str_starts_with($key, '$') ? $key : '$'.$key;
+                $sanityParams[$paramKey] = json_encode($value, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES);
+            }
+
+            $queryParams = array_merge(['query' => $groq], $sanityParams);
 
             $req = Http::acceptJson();
 
