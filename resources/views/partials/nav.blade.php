@@ -1,46 +1,28 @@
 @php
-    $navItems = $siteSettings['primaryNavigation'] ?? [
+    $navItems = [
         ['label' => 'Home', 'href' => '/'],
         ['label' => 'About', 'href' => '/about'],
-        ['label' => 'Services', 'href' => '/services'],
+        ['label' => 'Weddings', 'href' => '/services/weddings'],
+        ['label' => 'Music Videos', 'href' => '/services/music-videos'],
+        ['label' => 'Corporate', 'href' => '/services/corporate'],
+        ['label' => 'Content for Business', 'href' => '/services/content-for-business'],
+        ['label' => 'Vox Pops', 'href' => '/services/vox-pops'],
+        ['label' => 'Events', 'href' => '/services/events'],
         ['label' => 'Portfolio', 'href' => '/portfolio'],
         ['label' => 'Get a Quote', 'href' => '/get-a-quote'],
         ['label' => 'Contact', 'href' => '/contact'],
     ];
 @endphp
 
-<header data-site-nav class="fixed inset-x-0 top-0 z-50 bg-transparent transition-all duration-200">
-    <div class="mx-auto flex max-w-7xl items-center justify-between px-6 py-4">
-        <a href="/" class="text-sm font-semibold uppercase tracking-[0.2em] text-slate-100">
-            {{ $siteSettings['siteTitle'] ?? 'Future Digital Productions' }}
-        </a>
+<header class="site-nav" data-site-nav>
+    <div class="container nav-inner">
+        <a class="brand" href="/">Future Digital Productions</a>
+        <button class="nav-toggle" type="button" data-nav-toggle aria-label="Toggle navigation">Menu</button>
 
-        <button type="button" data-menu-toggle class="rounded-md border border-slate-500/40 px-3 py-2 text-xs uppercase tracking-[0.15em] md:hidden">
-            Menu
-        </button>
-
-        <nav class="hidden md:block">
-            <ul class="flex items-center gap-6 text-xs uppercase tracking-[0.18em]">
-                @foreach ($navItems as $item)
-                    <li>
-                        <a href="{{ $item['href'] ?? '/' }}" class="text-slate-200 transition hover:text-white">
-                            {{ $item['label'] ?? 'Link' }}
-                        </a>
-                    </li>
-                @endforeach
-            </ul>
-        </nav>
-    </div>
-
-    <div data-mobile-menu class="hidden border-t border-slate-700/60 bg-[#192836] px-6 pb-4 pt-2 md:hidden">
-        <ul class="space-y-3 text-xs uppercase tracking-[0.15em]">
+        <nav class="nav-links" data-nav-menu>
             @foreach ($navItems as $item)
-                <li>
-                    <a href="{{ $item['href'] ?? '/' }}" class="block py-1 text-slate-200 transition hover:text-white">
-                        {{ $item['label'] ?? 'Link' }}
-                    </a>
-                </li>
+                <a href="{{ $item['href'] }}">{{ $item['label'] }}</a>
             @endforeach
-        </ul>
+        </nav>
     </div>
 </header>
