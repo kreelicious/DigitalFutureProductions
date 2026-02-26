@@ -19,9 +19,18 @@
 <header class="site-nav" data-site-nav data-stuck="false">
     <div class="container nav-inner">
         <a class="brand" href="/">Future Digital Productions</a>
-        <button class="nav-toggle" type="button" data-nav-toggle aria-label="Toggle navigation">Menu</button>
+        <button
+            class="nav-toggle"
+            type="button"
+            data-nav-toggle
+            aria-label="Toggle navigation"
+            aria-expanded="false"
+            aria-controls="primary-navigation"
+        >
+            Menu
+        </button>
 
-        <nav class="nav-links" data-nav-menu data-open="false" aria-label="Primary">
+        <nav class="nav-links" id="primary-navigation" data-nav-menu data-open="false" aria-label="Primary">
             @foreach (array_slice($navItems, 0, 2) as $item)
                 <a href="{{ $item['href'] }}">{{ $item['label'] }}</a>
             @endforeach
