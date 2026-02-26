@@ -32,8 +32,8 @@
     <script>
         (() => {
             const nav = document.querySelector('[data-site-nav]');
-            const menuButton = document.querySelector('[data-menu-toggle]');
-            const mobileMenu = document.querySelector('[data-mobile-menu]');
+            const menuButton = document.querySelector('[data-nav-toggle]');
+            const mobileMenu = document.querySelector('[data-nav-menu]');
             if (!nav) return;
 
             const onScroll = () => {
@@ -50,8 +50,26 @@
             window.addEventListener('scroll', onScroll, { passive: true });
 
             if (menuButton && mobileMenu) {
+                const setMenuState = (isOpen) => {
+                    mobileMenu.dataset.open = isOpen ? 'true' : 'false';
+                    menuButton.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+                    document.body.classList.toggle('menu-open', isOpen);
+                };
+
                 menuButton.addEventListener('click', () => {
-                    mobileMenu.classList.toggle('hidden');
+                    setMenuState(mobileMenu.dataset.open !== 'true');
+                });
+
+                mobileMenu.querySelectorAll('a').forEach((item) => {
+                    item.addEventListener('click', () => {
+                        setMenuState(false);
+                    });
+                });
+
+                window.addEventListener('keydown', (event) => {
+                    if (event.key === 'Escape' && mobileMenu.dataset.open === 'true') {
+                        setMenuState(false);
+                    }
                 });
             }
         })();
