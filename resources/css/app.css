@@ -69,6 +69,8 @@ h1, h2, h3, h4, h5, h6 {
     background: transparent;
     border-radius: 10px;
     padding: 0.45rem 0.7rem;
+    position: relative;
+    z-index: 130;
 }
 
 .nav-links {
@@ -276,33 +278,69 @@ blockquote { margin: 0.3rem 0; font-size: 1.25rem; line-height: 1.5; }
     font-size: 0.95rem;
 }
 
+
 @media (max-width: 1024px) {
+    body.menu-open {
+        overflow: hidden;
+    }
+
     .card-grid.six,
     .card-grid.three { grid-template-columns: repeat(2, minmax(0, 1fr)); }
 
     .nav-toggle { display: inline-flex; }
 
     .nav-links {
-        display: none;
-        position: absolute;
-        top: 76px;
-        left: 1.5rem;
-        right: 1.5rem;
-        background: var(--color-primary);
-        border: 1px solid rgba(184, 192, 204, 0.2);
-        border-radius: 12px;
-        padding: 0.8rem;
+        position: fixed;
+        inset: 0;
+        z-index: 120;
+        display: grid;
+        grid-template-columns: 1fr;
+        align-content: center;
+        justify-items: center;
+        gap: 1.25rem;
+        padding: 7.5rem 2rem 2.5rem;
+        background: rgba(15, 24, 33, 0.96);
+        backdrop-filter: blur(4px);
+        opacity: 0;
+        visibility: hidden;
+        pointer-events: none;
+        transform: translateY(-1.25rem);
+        transition: opacity 280ms ease, transform 320ms ease, visibility 320ms ease;
     }
 
-    .nav-links[data-open='true'] { display: grid; grid-template-columns: 1fr; }
+    .nav-links[data-open='true'] {
+        opacity: 1;
+        visibility: visible;
+        pointer-events: auto;
+        transform: translateY(0);
+    }
 
-    .nav-group summary { font-size: 0.72rem; }
+    .nav-links a,
+    .nav-group summary {
+        font-size: clamp(1.15rem, 4vw, 1.7rem);
+        letter-spacing: 0.05em;
+    }
+
+    .nav-group {
+        display: grid;
+        justify-items: center;
+        gap: 0.75rem;
+    }
 
     .nav-submenu {
         position: static;
-        min-width: unset;
-        margin-top: 0.6rem;
+        display: none;
+        min-width: min(420px, 100%);
+        width: 100%;
+        margin-top: 0.3rem;
+        text-align: center;
+        background: rgba(20, 33, 44, 0.95);
+        border-radius: 12px;
         box-shadow: none;
+    }
+
+    .nav-group[open] .nav-submenu {
+        display: grid;
     }
 }
 
