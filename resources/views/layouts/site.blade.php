@@ -5,15 +5,16 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>{{ $metaTitle ?? ($siteSettings['siteTitle'] ?? config('app.name')) }}</title>
     <meta name="description" content="{{ $metaDescription ?? ($siteSettings['defaultSeo']['metaDescription'] ?? '') }}">
-    @if (file_exists(public_path('build/manifest.json')) || file_exists(public_path('hot')))
+    @php
+        $viteHotFile = public_path('hot');
+        $viteManifestFile = public_path('build/manifest.json');
+        $fallbackCssFile = resource_path('css/app.css');
+    @endphp
+
+    @if (file_exists($viteManifestFile) || file_exists($viteHotFile))
         @vite(['resources/css/app.css', 'resources/js/app.js'])
-    @else
-        <style>
-            :root { color-scheme: dark; }
-            * { box-sizing: border-box; }
-            body { margin: 0; font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif; background: #020617; color: #e2e8f0; }
-            a { color: inherit; text-decoration: none; }
-        </style>
+    @elseif (file_exists($fallbackCssFile))
+        <style>{!! file_get_contents($fallbackCssFile) !!}</style>
     @endif
 </head>
 <body class="bg-slate-950 text-slate-100 antialiased">
