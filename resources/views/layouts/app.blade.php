@@ -11,12 +11,15 @@
         $viteHotFile = public_path('hot');
         $viteManifestFile = public_path('build/manifest.json');
         $fallbackCssFile = resource_path('css/app.css');
+        $publicCssFile = public_path('css/app.css');
     @endphp
 
     @if (file_exists($viteHotFile) || file_exists($viteManifestFile))
         @vite(['resources/css/app.css', 'resources/js/app.js'])
     @elseif (file_exists($fallbackCssFile))
         <style>{!! file_get_contents($fallbackCssFile) !!}</style>
+    @elseif (file_exists($publicCssFile))
+        <link rel="stylesheet" href="{{ asset('css/app.css') }}">
     @endif
 </head>
 <body>
