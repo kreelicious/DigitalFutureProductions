@@ -12,7 +12,7 @@
     <section class="section container">
         <h2>What We Do</h2>
         <div class="card-grid six">
-            @foreach (['Weddings', 'Music Videos', 'Corporate', 'Content for Business', 'Vox Pops', 'Events'] as $service)
+            @foreach (['Weddings', 'Music Videos', 'Corporate Films', 'Content for Business', 'Vox Pops', 'Events'] as $service)
                 <article class="card">
                     <div class="card-media" aria-hidden="true"></div>
                     <h3>{{ $service }}</h3>

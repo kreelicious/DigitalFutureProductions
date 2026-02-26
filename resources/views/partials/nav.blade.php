@@ -14,12 +14,12 @@
     ];
 @endphp
 
-<header class="site-nav" data-site-nav>
+<header class="site-nav" data-site-nav data-stuck="false">
     <div class="container nav-inner">
         <a class="brand" href="/">Future Digital Productions</a>
         <button class="nav-toggle" type="button" data-nav-toggle aria-label="Toggle navigation">Menu</button>
 
-        <nav class="nav-links" data-nav-menu>
+        <nav class="nav-links" data-nav-menu data-open="false">
             @foreach ($navItems as $item)
                 <a href="{{ $item['href'] }}">{{ $item['label'] }}</a>
             @endforeach

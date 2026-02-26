@@ -9,7 +9,7 @@ const updateNavState = () => {
         return;
     }
 
-    nav.dataset.scrolled = window.scrollY > 60 ? 'true' : 'false';
+    nav.dataset.stuck = window.scrollY > 60 ? 'true' : 'false';
 };
 
 updateNavState();
