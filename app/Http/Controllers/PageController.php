@@ -10,7 +10,7 @@ class PageController extends Controller
     {
         return view('pages.home', [
             'pageTitle' => 'Home',
-            'heroHeadline' => 'High-impact cinematic production for brands, artists, and unforgettable moments.',
+            'heroHeadline' => 'Cinematic Storytelling. Delivered in as fast as 48 Hours.',
         ]);
     }
 

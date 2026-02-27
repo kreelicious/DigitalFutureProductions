@@ -4,9 +4,9 @@
     @include('partials.hero', ['title' => $pageTitle, 'headline' => $heroHeadline])
 
     <section class="section container narrow">
-        <h2>Introduction</h2>
-        <p>Future Digital Productions is a cinematic production partner for brands, artists, and modern businesses that need storytelling with purpose. We design every project around audience attention, narrative clarity, and visual depth.</p>
-        <p>This skeleton site establishes the reusable architecture for future Sanity-driven content. Each section is intentionally clean, modular, and ready to receive structured data, assets, and campaign-level messaging.</p>
+        <h2>Broadcast-level filmmaking, produced with speed, precision, and a modern mobile-first approach.</h2>
+        <p>Future Digital Productions brings together high-end broadcast experience and agile modern production. Founded by BBC filmmaker Mark Boucher, the company delivers premium-quality video without the traditional overhead of large crews and complex setups.</p>
+        <p>Using a streamlined smartphone-first workflow, we produce powerful, story-driven films with exceptional turnaround times — often within 48 hours.</p>
     </section>
 
     <section class="section container">

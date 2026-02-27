@@ -10,9 +10,11 @@
         $viteManifestFile = public_path('build/manifest.json');
         $fallbackCssFile = resource_path('css/app.css');
         $publicCssFile = public_path('css/app.css');
+        $publicJsFile = public_path('js/app.js');
+        $hasViteAssets = file_exists($viteManifestFile) || file_exists($viteHotFile);
     @endphp
 
-    @if (file_exists($viteManifestFile) || file_exists($viteHotFile))
+    @if ($hasViteAssets)
         @vite(['resources/css/app.css', 'resources/js/app.js'])
     @elseif (file_exists($fallbackCssFile))
         <style>{!! file_get_contents($fallbackCssFile) !!}</style>
@@ -29,36 +31,77 @@
 
     @include('partials.footer', ['siteSettings' => $siteSettings ?? null])
 
+    @if (!$hasViteAssets && file_exists($publicJsFile))
+        <script src="{{ asset('js/app.js') }}" defer></script>
+    @else
     <script>
         (() => {
-            const nav = document.querySelector('[data-site-nav]');
-            const menuButton = document.querySelector('[data-nav-toggle]');
-            const mobileMenu = document.querySelector('[data-nav-menu]');
-            if (!nav) return;
+            const initNav = () => {
+                const nav = document.querySelector('[data-site-nav]');
+                const menuButton = document.querySelector('[data-nav-toggle]');
+                const mobileMenu = document.querySelector('[data-nav-menu]');
+                const initScrollReveal = () => {
+                    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+                    const revealTargets = Array.from(document.querySelectorAll('.section, .card, .strip, .cta-block, .hero-content > *'));
 
-            const onScroll = () => {
-                if (window.scrollY > 50) {
-                    nav.classList.add('bg-[#192836]', 'shadow-xl');
-                    nav.classList.remove('bg-transparent');
-                } else {
-                    nav.classList.add('bg-transparent');
-                    nav.classList.remove('bg-[#192836]', 'shadow-xl');
+                    revealTargets.forEach((element, index) => {
+                        if (!element.hasAttribute('data-reveal')) {
+                            element.setAttribute('data-reveal', '');
+                        }
+
+                        const delay = Math.min((index % 6) * 80, 400);
+                        element.style.setProperty('--reveal-delay', `${delay}ms`);
+                    });
+
+                    if (prefersReducedMotion || !('IntersectionObserver' in window)) {
+                        revealTargets.forEach((element) => {
+                            element.classList.add('is-visible');
+                        });
+                        return;
+                    }
+
+                    const observer = new IntersectionObserver((entries, revealObserver) => {
+                        entries.forEach((entry) => {
+                            if (!entry.isIntersecting) {
+                                return;
+                            }
+
+                            entry.target.classList.add('is-visible');
+                            revealObserver.unobserve(entry.target);
+                        });
+                    }, {
+                        root: null,
+                        threshold: 0.15,
+                        rootMargin: '0px 0px -8% 0px',
+                    });
+
+                    revealTargets.forEach((element) => observer.observe(element));
+                };
+
+                if (nav) {
+                    const onScroll = () => {
+                        const isStuck = window.scrollY > 60;
+                        nav.dataset.stuck = isStuck ? 'true' : 'false';
+                        nav.classList.toggle('is-stuck', isStuck);
+                        nav.classList.toggle('is-at-top', !isStuck);
+                        nav.style.backgroundColor = isStuck ? 'rgba(25, 40, 54, 0.98)' : 'transparent';
+                        nav.style.boxShadow = isStuck ? '0 10px 24px rgba(0, 0, 0, 0.3)' : 'none';
+                        nav.style.backdropFilter = isStuck ? 'saturate(130%) blur(6px)' : 'none';
+                    };
+
+                    onScroll();
+                    window.addEventListener('scroll', onScroll, { passive: true });
                 }
-            };
 
-            onScroll();
-            window.addEventListener('scroll', onScroll, { passive: true });
+                initScrollReveal();
 
-            if (menuButton && mobileMenu) {
+                if (!menuButton || !mobileMenu) return;
+
                 const setMenuState = (isOpen) => {
                     mobileMenu.dataset.open = isOpen ? 'true' : 'false';
                     menuButton.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
                     document.body.classList.toggle('menu-open', isOpen);
                 };
-
-                menuButton.addEventListener('click', () => {
-                    setMenuState(mobileMenu.dataset.open !== 'true');
-                });
 
                 mobileMenu.querySelectorAll('a').forEach((item) => {
                     item.addEventListener('click', () => {
@@ -71,8 +114,15 @@
                         setMenuState(false);
                     }
                 });
+            };
+
+            if (document.readyState === 'loading') {
+                document.addEventListener('DOMContentLoaded', initNav, { once: true });
+            } else {
+                initNav();
             }
         })();
     </script>
+    @endif
 </body>
 </html>

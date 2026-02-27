@@ -16,9 +16,11 @@
     ];
 @endphp
 
-<header class="site-nav" data-site-nav data-stuck="false">
+<header class="site-nav is-at-top" data-site-nav data-stuck="false">
     <div class="container nav-inner">
-        <a class="brand" href="/">Future Digital Productions</a>
+        <a class="brand" href="/">
+            <img src="{{ asset('images/fdp-logo.png') }}" alt="Future Digital Productions" class="brand-logo">
+        </a>
         <button
             class="nav-toggle"
             type="button"
