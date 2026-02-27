@@ -78,16 +78,6 @@
         </div>
     </section>
 
-    <section class="section container narrow">
-        <h2>The Difference</h2>
-        <ul class="bullets">
-            <li>Story-first approach that balances emotion and strategy.</li>
-            <li>Lean production workflows for fast turnarounds.</li>
-            <li>Consistent cinematic visual language across channels.</li>
-            <li>Collaborative process with transparent communication.</li>
-        </ul>
-    </section>
-
     <section class="strip testimonial-strip">
         <div class="container narrow" data-testimonial-carousel>
             <h2>Testimonials</h2>
