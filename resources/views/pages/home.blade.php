@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-    @include('partials.hero', ['title' => $pageTitle, 'headline' => $heroHeadline])
+    @include('partials.hero', ['title' => $pageTitle, 'headline' => $heroHeadline, 'video' => asset('video/FDP-hero.mp4')])
 
     <section class="section container narrow">
         <h2>Broadcast-level filmmaking, produced with speed, precision, and a modern mobile-first approach.</h2>
