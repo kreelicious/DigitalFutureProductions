@@ -89,12 +89,125 @@
     </section>
 
     <section class="strip">
-        <div class="container narrow">
-            <h2>Testimonial</h2>
-            <blockquote>“Future Digital Productions turned our brief into a film that felt premium, human, and highly shareable.”</blockquote>
-            <p class="muted">— Client Name, Brand / Company</p>
+        <div class="container narrow" data-testimonial-carousel>
+            <h2>Testimonials</h2>
+            @php
+                $testimonials = [
+                    [
+                        'quote' => 'Future Digital Productions turned our brief into a film that felt premium, human, and highly shareable.',
+                        'name' => 'Client Name',
+                        'company' => 'Brand / Company',
+                    ],
+                    [
+                        'quote' => 'The turnaround was incredibly fast and the final video looked cinematic, polished, and perfectly on message.',
+                        'name' => 'Marketing Lead',
+                        'company' => 'North Studio',
+                    ],
+                    [
+                        'quote' => 'From planning to delivery, the whole process was smooth and collaborative. We had social edits live within days.',
+                        'name' => 'Events Manager',
+                        'company' => 'City Collective',
+                    ],
+                ];
+            @endphp
+
+            <div class="testimonial-carousel" role="region" aria-label="Client testimonials carousel">
+                <div class="testimonial-carousel-track" aria-live="polite">
+                    @foreach ($testimonials as $testimonial)
+                        <article class="testimonial-slide{{ $loop->first ? ' is-active' : '' }}" data-testimonial-slide>
+                            <blockquote>“{{ $testimonial['quote'] }}”</blockquote>
+                            <p class="muted">— {{ $testimonial['name'] }}, {{ $testimonial['company'] }}</p>
+                        </article>
+                    @endforeach
+                </div>
+
+                <div class="testimonial-controls">
+                    <button type="button" class="testimonial-arrow" data-testimonial-prev aria-label="Previous testimonial">‹</button>
+                    <div class="testimonial-dots" role="tablist" aria-label="Select testimonial">
+                        @foreach ($testimonials as $testimonial)
+                            <button
+                                type="button"
+                                class="testimonial-dot{{ $loop->first ? ' is-active' : '' }}"
+                                data-testimonial-dot
+                                data-testimonial-index="{{ $loop->index }}"
+                                aria-label="Show testimonial {{ $loop->iteration }}"
+                                aria-selected="{{ $loop->first ? 'true' : 'false' }}"
+                            ></button>
+                        @endforeach
+                    </div>
+                    <button type="button" class="testimonial-arrow" data-testimonial-next aria-label="Next testimonial">›</button>
+                </div>
+            </div>
         </div>
     </section>
+
+    <script>
+        (() => {
+            const root = document.querySelector('[data-testimonial-carousel]');
+            if (!root) return;
+
+            const slides = Array.from(root.querySelectorAll('[data-testimonial-slide]'));
+            const dots = Array.from(root.querySelectorAll('[data-testimonial-dot]'));
+            const prevButton = root.querySelector('[data-testimonial-prev]');
+            const nextButton = root.querySelector('[data-testimonial-next]');
+
+            if (slides.length < 2) return;
+
+            let currentIndex = 0;
+            let intervalId = null;
+
+            const setActive = (index) => {
+                currentIndex = (index + slides.length) % slides.length;
+
+                slides.forEach((slide, slideIndex) => {
+                    const isActive = slideIndex === currentIndex;
+                    slide.classList.toggle('is-active', isActive);
+                    slide.setAttribute('aria-hidden', isActive ? 'false' : 'true');
+                });
+
+                dots.forEach((dot, dotIndex) => {
+                    const isActive = dotIndex === currentIndex;
+                    dot.classList.toggle('is-active', isActive);
+                    dot.setAttribute('aria-selected', isActive ? 'true' : 'false');
+                });
+            };
+
+            const stopAutoPlay = () => {
+                if (intervalId) {
+                    window.clearInterval(intervalId);
+                    intervalId = null;
+                }
+            };
+
+            const startAutoPlay = () => {
+                stopAutoPlay();
+                intervalId = window.setInterval(() => setActive(currentIndex + 1), 6000);
+            };
+
+            prevButton?.addEventListener('click', () => {
+                setActive(currentIndex - 1);
+                startAutoPlay();
+            });
+
+            nextButton?.addEventListener('click', () => {
+                setActive(currentIndex + 1);
+                startAutoPlay();
+            });
+
+            dots.forEach((dot, index) => {
+                dot.addEventListener('click', () => {
+                    setActive(index);
+                    startAutoPlay();
+                });
+            });
+
+            root.addEventListener('mouseenter', stopAutoPlay);
+            root.addEventListener('mouseleave', startAutoPlay);
+
+            setActive(0);
+            startAutoPlay();
+        })();
+    </script>
 
     <section class="section container narrow cta-block">
         <h2>Ready to bring your next project to life?</h2>
