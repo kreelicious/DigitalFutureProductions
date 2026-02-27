@@ -88,7 +88,7 @@
         </ul>
     </section>
 
-    <section class="strip">
+    <section class="strip testimonial-strip">
         <div class="container narrow" data-testimonial-carousel>
             <h2>Testimonials</h2>
             @php

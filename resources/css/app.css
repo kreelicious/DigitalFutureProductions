@@ -279,6 +279,27 @@ h1, h2, h3, h4, h5, h6 {
     padding: 3rem 0;
 }
 
+.testimonial-strip {
+    background: #f4f6f8;
+    border-block: 1px solid rgba(15, 24, 33, 0.12);
+}
+
+.testimonial-strip h2,
+.testimonial-strip blockquote,
+.testimonial-strip .muted {
+    color: #1b2733;
+}
+
+.testimonial-strip .testimonial-arrow {
+    border-color: rgba(27, 39, 51, 0.2);
+    background: #ffffff;
+    color: #1b2733;
+}
+
+.testimonial-strip .testimonial-dot {
+    background: rgba(27, 39, 51, 0.2);
+}
+
 blockquote { margin: 0.3rem 0; font-size: 1.25rem; line-height: 1.5; }
 .muted { color: var(--color-muted); }
 
