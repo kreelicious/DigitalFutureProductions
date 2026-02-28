@@ -58,9 +58,9 @@ h1, h2, h3, h4, h5, h6 {
 
 .nav-inner {
     min-height: 76px;
-    display: flex;
+    display: grid;
+    grid-template-columns: auto 1fr auto;
     align-items: center;
-    justify-content: space-between;
     gap: 1rem;
 }
 
@@ -77,6 +77,8 @@ h1, h2, h3, h4, h5, h6 {
 
 .nav-toggle {
     display: none;
+    grid-column: 3;
+    justify-self: end;
     border: 1px solid rgba(245, 247, 250, 0.45);
     color: var(--color-text);
     background: transparent;
@@ -87,14 +89,15 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .nav-links {
+    grid-column: 2;
     display: flex;
     gap: 1rem;
     flex-wrap: wrap;
-    justify-content: flex-end;
+    justify-content: center;
 }
 
 .nav-links a {
-    font-size: 0.72rem;
+    font-size: 0.9rem;
     text-transform: uppercase;
     letter-spacing: 0.08em;
     color: var(--color-text);
@@ -108,7 +111,7 @@ h1, h2, h3, h4, h5, h6 {
 .nav-group summary {
     list-style: none;
     cursor: pointer;
-    font-size: 0.72rem;
+    font-size: 0.9rem;
     text-transform: uppercase;
     letter-spacing: 0.08em;
     color: var(--color-text);
@@ -139,6 +142,29 @@ h1, h2, h3, h4, h5, h6 {
 
 .nav-group[open] .nav-submenu {
     display: grid;
+}
+
+.nav-cta {
+    grid-column: 3;
+    justify-self: end;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 40px;
+    padding: 0.5rem 1rem;
+    border-radius: 999px;
+    border: 1px solid transparent;
+    background: var(--color-accent);
+    color: #fff;
+    font-size: 0.9rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    white-space: nowrap;
+}
+
+.nav-quote-mobile {
+    display: none;
 }
 
 .hero {
@@ -184,6 +210,46 @@ h1, h2, h3, h4, h5, h6 {
     font-size: 0.8rem;
 }
 
+.hero-breadcrumbs {
+    margin-top: 1rem;
+    margin-bottom: 0;
+    display: inline-flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    gap: 0.35rem;
+    font-size: 0.9rem;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--color-muted);
+}
+
+.hero-breadcrumbs a,
+.hero-breadcrumbs span {
+    opacity: 0.9;
+}
+
+.hero-breadcrumbs a {
+    color: var(--color-accent);
+    opacity: 1;
+}
+
+.hero-breadcrumbs a:hover {
+    opacity: 1;
+    color: #ff4a4f;
+}
+
+.hero-breadcrumbs a::after {
+    content: '/';
+    margin-left: 0.35rem;
+    color: rgba(184, 192, 204, 0.65);
+}
+
+.hero-breadcrumbs span[aria-current='page'] {
+    color: var(--color-text);
+    opacity: 1;
+}
+
 .hero h1 {
     margin: 0;
     max-width: 860px;
@@ -191,9 +257,35 @@ h1, h2, h3, h4, h5, h6 {
     line-height: 1.12;
 }
 
+.hero--standard {
+    height: 480px;
+    min-height: 480px;
+    align-items: center;
+}
+
+.hero--standard .hero-content {
+    padding-bottom: 0;
+    text-align: center;
+}
+
+.hero--standard h1 {
+    margin-inline: auto;
+}
+
+.hero-subtitle {
+    margin: 0.9rem auto 0;
+    max-width: 760px;
+    color: var(--color-muted);
+    line-height: 1.6;
+}
+
 
 .hero-actions {
     margin-top: 1.5rem;
+}
+
+.hero-actions .btn {
+    font-size: 1.05rem;
 }
 
 body.modal-open {
@@ -207,6 +299,10 @@ body.modal-open {
     display: grid;
     place-items: center;
     padding: 1rem;
+}
+
+.showreel-modal[hidden] {
+    display: none;
 }
 
 .showreel-modal-backdrop {
@@ -522,6 +618,7 @@ blockquote { margin: 0.3rem 0; font-size: 1.25rem; line-height: 1.5; }
     .card-grid.three { grid-template-columns: repeat(2, minmax(0, 1fr)); }
 
     .nav-toggle { display: inline-flex; }
+    .nav-cta { display: none; }
 
     .nav-links {
         position: fixed;
@@ -553,6 +650,22 @@ blockquote { margin: 0.3rem 0; font-size: 1.25rem; line-height: 1.5; }
     .nav-group summary {
         font-size: clamp(1.15rem, 4vw, 1.7rem);
         letter-spacing: 0.05em;
+    }
+
+    .nav-quote-mobile {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        min-height: 48px;
+        padding: 0.6rem 1.2rem;
+        border-radius: 999px;
+        border: 1px solid transparent;
+        background: var(--color-accent);
+        color: #fff;
+        font-size: 1rem !important;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 0.08em;
     }
 
     .nav-group {

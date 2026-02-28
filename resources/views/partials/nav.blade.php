@@ -3,7 +3,6 @@
         ['label' => 'Home', 'href' => '/'],
         ['label' => 'About', 'href' => '/about'],
         ['label' => 'Portfolio', 'href' => '/portfolio'],
-        ['label' => 'Get a Quote', 'href' => '/get-a-quote'],
         ['label' => 'Contact', 'href' => '/contact'],
     ];
 
@@ -49,6 +48,10 @@
             @foreach (array_slice($navItems, 2) as $item)
                 <a href="{{ $item['href'] }}">{{ $item['label'] }}</a>
             @endforeach
+
+            <a href="/get-a-quote" class="nav-quote-mobile">Get A Quote</a>
         </nav>
+
+        <a href="/get-a-quote" class="nav-cta">Get A Quote</a>
     </div>
 </header>

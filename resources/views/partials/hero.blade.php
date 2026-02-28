@@ -5,9 +5,10 @@
     'video' => null,
     'videoPoster' => null,
     'showreelUrl' => null,
+    'isHome' => request()->path() === '/',
 ])
 
-<section class="hero" style="--hero-media: url('{{ $media ?? 'https://images.unsplash.com/photo-1492691527719-9d1e07e534b4?auto=format&fit=crop&w=2000&q=80' }}');">
+<section class="hero{{ $isHome ? '' : ' hero--standard' }}" style="--hero-media: url('{{ $media ?? 'https://images.unsplash.com/photo-1492691527719-9d1e07e534b4?auto=format&fit=crop&w=2000&q=80' }}');">
     @if ($video)
         <video class="hero-video" autoplay muted loop playsinline preload="metadata" @if($videoPoster) poster="{{ $videoPoster }}" @endif>
             <source src="{{ $video }}" type="video/mp4">
@@ -15,12 +16,45 @@
     @endif
     <div class="hero-overlay"></div>
     <div class="container hero-content">
-        <p class="hero-title">{{ $title }}</p>
-        <h1>{{ $headline }}</h1>
+        @if ($isHome)
+            <p class="hero-title">{{ $title }}</p>
+            <h1>{{ $headline }}</h1>
+        @else
+            <h1>{{ $title }}</h1>
+            @if (!empty($headline) && $headline !== $title)
+                <p class="hero-subtitle">{{ $headline }}</p>
+            @endif
+
+            @php
+                $segments = request()->segments();
+                $crumbs = [['label' => 'Home', 'href' => '/']];
+                $pathAccumulator = '';
+
+                foreach ($segments as $index => $segment) {
+                    $pathAccumulator .= '/' . $segment;
+                    $isLast = $index === count($segments) - 1;
+                    $label = $isLast ? $title : ucwords(str_replace('-', ' ', $segment));
+                    $crumbs[] = [
+                        'label' => $label,
+                        'href' => $isLast ? null : $pathAccumulator,
+                    ];
+                }
+            @endphp
+
+            <nav class="hero-breadcrumbs" aria-label="Breadcrumb">
+                @foreach ($crumbs as $crumb)
+                    @if ($crumb['href'])
+                        <a href="{{ $crumb['href'] }}">{{ $crumb['label'] }}</a>
+                    @else
+                        <span aria-current="page">{{ $crumb['label'] }}</span>
+                    @endif
+                @endforeach
+            </nav>
+        @endif
 
         @if ($showreelUrl)
             <div class="hero-actions">
-                <button type="button" class="btn btn-primary" data-open-showreel-modal>Watch Showreel</button>
+                <button type="button" class="btn btn-primary" data-open-showreel-modal>&#9658; Watch Showreel</button>
             </div>
         @endif
     </div>
