@@ -531,6 +531,7 @@ blockquote { margin: 0.3rem 0; font-size: 1.25rem; line-height: 1.5; }
     border-radius: 16px;
     background: linear-gradient(130deg, rgba(20, 33, 44, 0.95), rgba(25, 40, 54, 0.95));
     padding: 2rem;
+    margin-block: 2.2rem;
 }
 
 .home-cta-block {
