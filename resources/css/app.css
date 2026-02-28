@@ -533,27 +533,13 @@ blockquote { margin: 0.3rem 0; font-size: 1.25rem; line-height: 1.5; }
     padding: 2rem;
 }
 
-
-.home-cta-strip {
-    background: linear-gradient(125deg, #9b1324 0%, #ca283e 52%, #8f0f21 100%);
-    border-block: 1px solid rgba(255, 168, 168, 0.42);
-}
-
-.home-cta-strip .container {
-    padding-block: 1.4rem;
-}
-
-.home-cta-strip .cta-block {
-    background: transparent;
-    border-color: rgba(255, 240, 243, 0.26);
-}
 .home-cta-block {
     display: grid;
     grid-template-columns: minmax(0, 1fr) auto;
     align-items: center;
     gap: 1.5rem;
-    border-color: rgba(255, 240, 243, 0.26);
-    background: rgba(120, 12, 27, 0.22);
+    border-color: rgba(255, 168, 168, 0.42);
+    background: linear-gradient(125deg, #9b1324 0%, #ca283e 52%, #8f0f21 100%);
     box-shadow: 0 22px 42px rgba(104, 10, 22, 0.45);
     overflow: hidden;
 }

@@ -204,16 +204,12 @@
         })();
     </script>
 
-    <section class="strip home-cta-strip">
-        <div class="container narrow">
-            <div class="cta-block home-cta-block">
-                <div class="home-cta-content">
-                    <h2>Ready to bring your next project to life?</h2>
-                    <p>Tell us your objective, timeline, and creative direction. We’ll respond with a production outline and next steps.</p>
-                    <x-button href="/get-a-quote">Get a Quote</x-button>
-                </div>
-                <img class="home-cta-image" src="/images/fdp-logo.png" alt="Digital Future Productions logo">
-            </div>
+    <section class="section container narrow cta-block home-cta-block">
+        <div class="home-cta-content">
+            <h2>Ready to bring your next project to life?</h2>
+            <p>Tell us your objective, timeline, and creative direction. We’ll respond with a production outline and next steps.</p>
+            <x-button href="/get-a-quote">Get a Quote</x-button>
         </div>
+        <img class="home-cta-image" src="/images/fdp-logo.png" alt="Digital Future Productions logo">
     </section>
 @endsection
