@@ -83,7 +83,7 @@
         </div>
     </section>
 
-    <section class=”strip testimonial-strip”>
+    <section class=”testimonial-strip”>
         <div class=”container narrow” data-testimonial-carousel>
             <h2 class=”testimonial-eyebrow”>Client Testimonials</h2>
             @php
