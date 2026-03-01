@@ -441,24 +441,77 @@ body.modal-open {
 }
 
 .testimonial-strip {
-    background: #f4f6f8;
-    border-block: 1px solid rgba(15, 24, 33, 0.12);
+    background: linear-gradient(135deg, #6e0d1a 0%, #9b1324 40%, #b8172c 70%, #7a0e1f 100%);
+    border-block: none;
+    padding: 5rem 0;
+    position: relative;
+    overflow: hidden;
 }
 
-.testimonial-strip h2,
-.testimonial-strip blockquote,
-.testimonial-strip .muted {
-    color: #1b2733;
+.testimonial-strip::before {
+    content: '\201C';
+    position: absolute;
+    top: -0.15em;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: clamp(14rem, 25vw, 22rem);
+    font-family: 'Poppins', sans-serif;
+    font-weight: 700;
+    color: rgba(255, 255, 255, 0.04);
+    line-height: 1;
+    pointer-events: none;
+    user-select: none;
+}
+
+.testimonial-eyebrow {
+    text-align: center;
+    font-size: 0.75rem;
+    font-weight: 600;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: rgba(255, 255, 255, 0.4);
+    margin: 0 0 2.5rem;
+}
+
+.testimonial-strip blockquote {
+    text-align: center;
+    font-size: clamp(1.2rem, 2.6vw, 1.85rem);
+    font-family: 'Poppins', sans-serif;
+    font-weight: 500;
+    line-height: 1.55;
+    color: #fff;
+    margin: 0;
+}
+
+.testimonial-attribution {
+    text-align: center;
+    font-size: 0.78rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: rgba(255, 255, 255, 0.45);
+    margin: 1.5rem 0 0;
+}
+
+.testimonial-strip .testimonial-carousel {
+    margin-top: 0;
 }
 
 .testimonial-strip .testimonial-arrow {
-    border-color: rgba(27, 39, 51, 0.2);
-    background: #ffffff;
-    color: #1b2733;
+    background: rgba(255, 255, 255, 0.08);
+    border-color: rgba(255, 255, 255, 0.18);
+    color: #fff;
+}
+
+.testimonial-strip .testimonial-arrow:hover {
+    background: rgba(255, 255, 255, 0.18);
 }
 
 .testimonial-strip .testimonial-dot {
-    background: rgba(27, 39, 51, 0.2);
+    background: rgba(255, 255, 255, 0.25);
+}
+
+.testimonial-strip .testimonial-dot.is-active {
+    background: #fff;
 }
 
 blockquote { margin: 0.3rem 0; font-size: 1.25rem; line-height: 1.5; }
@@ -472,7 +525,7 @@ blockquote { margin: 0.3rem 0; font-size: 1.25rem; line-height: 1.5; }
 
 .testimonial-carousel-track {
     position: relative;
-    min-height: 130px;
+    min-height: 200px;
 }
 
 .testimonial-slide {
@@ -826,7 +879,7 @@ blockquote { margin: 0.3rem 0; font-size: 1.25rem; line-height: 1.5; }
     .container { width: min(var(--container), calc(100% - 2rem)); }
     .card-grid.six,
     .card-grid.three { grid-template-columns: 1fr; }
-    .testimonial-carousel-track { min-height: 180px; }
+    .testimonial-carousel-track { min-height: 280px; }
     .testimonial-controls { justify-content: center; }
     .footer-main { grid-template-columns: 1fr; gap: 2rem; padding: 2rem 0; }
     .footer-brand { grid-column: auto; }

@@ -83,9 +83,9 @@
         </div>
     </section>
 
-    <section class="strip testimonial-strip">
-        <div class="container narrow" data-testimonial-carousel>
-            <h2>Testimonials</h2>
+    <section class=”strip testimonial-strip”>
+        <div class=”container narrow” data-testimonial-carousel>
+            <h2 class=”testimonial-eyebrow”>Client Testimonials</h2>
             @php
                 $testimonials = [
                     [
@@ -106,31 +106,31 @@
                 ];
             @endphp
 
-            <div class="testimonial-carousel" role="region" aria-label="Client testimonials carousel">
-                <div class="testimonial-carousel-track" aria-live="polite">
+            <div class=”testimonial-carousel” role=”region” aria-label=”Client testimonials carousel”>
+                <div class=”testimonial-carousel-track” aria-live=”polite”>
                     @foreach ($testimonials as $testimonial)
-                        <article class="testimonial-slide{{ $loop->first ? ' is-active' : '' }}" data-testimonial-slide>
-                            <blockquote>“{{ $testimonial['quote'] }}”</blockquote>
-                            <p class="muted">— {{ $testimonial['name'] }}, {{ $testimonial['company'] }}</p>
+                        <article class=”testimonial-slide{{ $loop->first ? ' is-active' : '' }}” data-testimonial-slide>
+                            <blockquote>&#8220;{{ $testimonial['quote'] }}&#8221;</blockquote>
+                            <p class=”testimonial-attribution”>{{ $testimonial['name'] }} &middot; {{ $testimonial['company'] }}</p>
                         </article>
                     @endforeach
                 </div>
 
-                <div class="testimonial-controls">
-                    <button type="button" class="testimonial-arrow" data-testimonial-prev aria-label="Previous testimonial">‹</button>
-                    <div class="testimonial-dots" role="tablist" aria-label="Select testimonial">
+                <div class=”testimonial-controls”>
+                    <button type=”button” class=”testimonial-arrow” data-testimonial-prev aria-label=”Previous testimonial”>‹</button>
+                    <div class=”testimonial-dots” role=”tablist” aria-label=”Select testimonial”>
                         @foreach ($testimonials as $testimonial)
                             <button
-                                type="button"
-                                class="testimonial-dot{{ $loop->first ? ' is-active' : '' }}"
+                                type=”button”
+                                class=”testimonial-dot{{ $loop->first ? ' is-active' : '' }}”
                                 data-testimonial-dot
-                                data-testimonial-index="{{ $loop->index }}"
-                                aria-label="Show testimonial {{ $loop->iteration }}"
-                                aria-selected="{{ $loop->first ? 'true' : 'false' }}"
+                                data-testimonial-index=”{{ $loop->index }}”
+                                aria-label=”Show testimonial {{ $loop->iteration }}”
+                                aria-selected=”{{ $loop->first ? 'true' : 'false' }}”
                             ></button>
                         @endforeach
                     </div>
-                    <button type="button" class="testimonial-arrow" data-testimonial-next aria-label="Next testimonial">›</button>
+                    <button type=”button” class=”testimonial-arrow” data-testimonial-next aria-label=”Next testimonial”>›</button>
                 </div>
             </div>
         </div>
