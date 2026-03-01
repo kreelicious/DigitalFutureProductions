@@ -1,4 +1,5 @@
 import './bootstrap';
+import '../css/app.css';
 
 const nav = document.querySelector('[data-site-nav]');
 const menu = document.querySelector('[data-nav-menu]');
