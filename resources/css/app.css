@@ -440,9 +440,10 @@ body.modal-open {
     padding: 3rem 0;
 }
 
-.testimonial-strip {
+.strip.testimonial-strip {
     background: linear-gradient(135deg, #6e0d1a 0%, #9b1324 40%, #b8172c 70%, #7a0e1f 100%);
-    border-block: none;
+    border-top: none;
+    border-bottom: none;
     padding: 5rem 0;
     position: relative;
     overflow: hidden;
