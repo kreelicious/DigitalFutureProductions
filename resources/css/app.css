@@ -197,8 +197,8 @@ h1, h2, h3, h4, h5, h6 {
     inset: 0;
     z-index: 1;
     background:
-        linear-gradient(180deg, rgba(5, 9, 13, 0.1) 0%, rgba(5, 9, 13, 0.55) 72%, rgba(5, 9, 13, 0.75) 100%),
-        linear-gradient(110deg, rgba(25, 40, 54, 0.4), rgba(20, 33, 44, 0.1));
+        linear-gradient(180deg, rgba(5, 9, 13, 0.05) 0%, rgba(5, 9, 13, 0.38) 72%, rgba(5, 9, 13, 0.6) 100%),
+        linear-gradient(110deg, rgba(25, 40, 54, 0.22), rgba(20, 33, 44, 0.05));
 }
 
 .hero-content {
