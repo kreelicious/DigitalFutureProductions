@@ -45,12 +45,26 @@
                 </div>
             </details>
 
+            <button type="button" class="nav-submenu-trigger" data-nav-submenu-open aria-expanded="false" aria-controls="mobile-submenu">
+                What We Do <span aria-hidden="true">›</span>
+            </button>
+
             @foreach (array_slice($navItems, 2) as $item)
                 <a href="{{ $item['href'] }}">{{ $item['label'] }}</a>
             @endforeach
 
             <a href="/get-a-quote" class="nav-quote-mobile">Get A Quote</a>
         </nav>
+
+    <div class="nav-submenu-panel" id="mobile-submenu" data-nav-submenu data-open="false" role="dialog" aria-label="What We Do">
+        <button type="button" class="nav-submenu-back" data-nav-submenu-close aria-label="Back to menu">
+            <span aria-hidden="true">‹</span> Back
+        </button>
+        <p class="nav-submenu-heading">What We Do</p>
+        @foreach ($serviceItems as $item)
+            <a href="{{ $item['href'] }}">{{ $item['label'] }}</a>
+        @endforeach
+    </div>
 
         <a href="/get-a-quote" class="nav-cta">Get A Quote</a>
     </div>

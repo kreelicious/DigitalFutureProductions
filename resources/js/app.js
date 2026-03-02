@@ -4,6 +4,9 @@ import '../css/app.css';
 const nav = document.querySelector('[data-site-nav]');
 const menu = document.querySelector('[data-nav-menu]');
 const toggle = document.querySelector('[data-nav-toggle]');
+const submenuPanel = document.querySelector('[data-nav-submenu]');
+const submenuOpen = document.querySelector('[data-nav-submenu-open]');
+const submenuClose = document.querySelector('[data-nav-submenu-close]');
 
 const initScrollReveal = () => {
     const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
@@ -54,12 +57,24 @@ const updateNavState = () => {
     nav.classList.toggle('is-at-top', !isStuck);
     nav.style.backgroundColor = isStuck ? 'rgba(25, 40, 54, 0.98)' : 'transparent';
     nav.style.boxShadow = isStuck ? '0 10px 24px rgba(0, 0, 0, 0.3)' : 'none';
-    nav.style.backdropFilter = isStuck ? 'saturate(130%) blur(6px)' : 'none';
+};
+
+const setSubmenuState = (open) => {
+    if (!submenuPanel || !submenuOpen) {
+        return;
+    }
+
+    submenuPanel.dataset.open = open ? 'true' : 'false';
+    submenuOpen.setAttribute('aria-expanded', open ? 'true' : 'false');
 };
 
 const setMenuState = (open) => {
     if (!menu || !toggle) {
         return;
+    }
+
+    if (!open) {
+        setSubmenuState(false);
     }
 
     menu.dataset.open = open ? 'true' : 'false';
@@ -83,8 +98,12 @@ if (toggle && menu) {
     });
 
     window.addEventListener('keydown', (event) => {
-        if (event.key === 'Escape' && menu.dataset.open === 'true') {
-            setMenuState(false);
+        if (event.key === 'Escape') {
+            if (submenuPanel?.dataset.open === 'true') {
+                setSubmenuState(false);
+            } else if (menu.dataset.open === 'true') {
+                setMenuState(false);
+            }
         }
     });
 
@@ -92,5 +111,19 @@ if (toggle && menu) {
         if (window.innerWidth > 1024 && menu.dataset.open === 'true') {
             setMenuState(false);
         }
+    });
+}
+
+if (submenuOpen) {
+    submenuOpen.addEventListener('click', () => setSubmenuState(true));
+}
+
+if (submenuClose) {
+    submenuClose.addEventListener('click', () => setSubmenuState(false));
+}
+
+if (submenuPanel) {
+    submenuPanel.querySelectorAll('a').forEach((item) => {
+        item.addEventListener('click', () => setMenuState(false));
     });
 }
