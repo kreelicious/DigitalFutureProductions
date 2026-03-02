@@ -455,13 +455,13 @@ body.modal-open {
 .testimonial-strip::before {
     content: '\201C';
     position: absolute;
-    top: -0.15em;
+    top: -0.05em;
     left: 50%;
     transform: translateX(-50%);
     font-size: clamp(14rem, 25vw, 22rem);
-    font-family: 'Poppins', sans-serif;
+    font-family: Georgia, 'Times New Roman', serif;
     font-weight: 700;
-    color: rgba(255, 255, 255, 0.04);
+    color: rgba(255, 255, 255, 0.12);
     line-height: 1;
     pointer-events: none;
     user-select: none;
@@ -469,11 +469,11 @@ body.modal-open {
 
 .testimonial-eyebrow {
     text-align: center;
-    font-size: 0.75rem;
+    font-size: 0.9rem;
     font-weight: 600;
     letter-spacing: 0.18em;
     text-transform: uppercase;
-    color: rgba(255, 255, 255, 0.4);
+    color: rgba(255, 255, 255, 0.7);
     margin: 0 0 2.5rem;
 }
 
@@ -489,10 +489,11 @@ body.modal-open {
 
 .testimonial-attribution {
     text-align: center;
-    font-size: 0.78rem;
-    letter-spacing: 0.15em;
+    font-size: 0.9rem;
+    font-weight: 600;
+    letter-spacing: 0.18em;
     text-transform: uppercase;
-    color: rgba(255, 255, 255, 0.45);
+    color: rgba(255, 255, 255, 0.7);
     margin: 1.5rem 0 0;
 }
 
