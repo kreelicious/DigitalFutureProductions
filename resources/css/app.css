@@ -578,6 +578,46 @@ blockquote { margin: 0.3rem 0; font-size: 1.25rem; line-height: 1.5; }
     background: var(--color-accent);
 }
 
+.trusted-strip {
+    padding: 3rem 0;
+    border-block: 1px solid rgba(184, 192, 204, 0.1);
+}
+
+.trusted-eyebrow {
+    text-align: center;
+    font-size: 0.7rem;
+    font-weight: 600;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: rgba(184, 192, 204, 0.4);
+    margin: 0 0 2rem;
+}
+
+.trusted-logos {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    gap: 1.5rem;
+}
+
+.trusted-logo-placeholder {
+    width: 160px;
+    height: 64px;
+    border: 1px dashed rgba(184, 192, 204, 0.2);
+    border-radius: 6px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: rgba(184, 192, 204, 0.35);
+    font-size: 0.72rem;
+    font-weight: 600;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    text-align: center;
+    padding: 0 0.75rem;
+}
+
 .cta-block {
     border: 1px solid rgba(184, 192, 204, 0.2);
     border-radius: 16px;

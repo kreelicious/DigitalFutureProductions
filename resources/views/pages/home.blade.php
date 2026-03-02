@@ -204,6 +204,19 @@
         })();
     </script>
 
+    <section class="trusted-strip">
+        <div class="container">
+            <p class="trusted-eyebrow">Trusted by</p>
+            <div class="trusted-logos">
+                <div class="trusted-logo-placeholder"><span>BBC</span></div>
+                <div class="trusted-logo-placeholder"><span>Welsh Government</span></div>
+                <div class="trusted-logo-placeholder"><span>Merthyr Tydfil Council</span></div>
+                <div class="trusted-logo-placeholder"><span>Cardiff and Vale College</span></div>
+                <div class="trusted-logo-placeholder"><span>Merthyr College</span></div>
+            </div>
+        </div>
+    </section>
+
     <section class="section container narrow cta-block home-cta-block">
         <div class="home-cta-content">
             <h2>Ready to bring your next project to life?</h2>
