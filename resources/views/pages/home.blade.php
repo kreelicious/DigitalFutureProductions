@@ -20,6 +20,7 @@
             $services = [
                 [
                     'title' => 'Weddings',
+                    'href' => '/services/weddings',
                     'description' => 'Beautifully crafted wedding films that capture atmosphere, emotion, and story — delivered with care and precision.',
                     'mediaType' => 'video',
                     'mediaSrc' => 'https://player.vimeo.com/external/434045526.sd.mp4?s=86d5fbc5ec9e89be7213f53f74c3e0c79f9f3f57&profile_id=164&oauth2_token_id=57447761',
@@ -28,6 +29,7 @@
                 ],
                 [
                     'title' => 'Music Videos',
+                    'href' => '/services/music-videos',
                     'description' => 'Visually striking productions designed for impact, energy, and artistic expression.',
                     'mediaType' => 'image',
                     'mediaSrc' => 'https://images.pexels.com/photos/1763075/pexels-photo-1763075.jpeg?auto=compress&cs=tinysrgb&w=1200',
@@ -35,6 +37,7 @@
                 ],
                 [
                     'title' => 'Corporate Films',
+                    'href' => '/services/corporate',
                     'description' => 'Clear, compelling storytelling for brands and organisations that need to communicate with confidence.',
                     'mediaType' => 'image',
                     'mediaSrc' => 'https://images.pexels.com/photos/3183150/pexels-photo-3183150.jpeg?auto=compress&cs=tinysrgb&w=1200',
@@ -42,6 +45,7 @@
                 ],
                 [
                     'title' => 'Content for Business',
+                    'href' => '/services/content-for-business',
                     'description' => 'Fast, professional content built specifically for digital platforms and modern audiences.',
                     'mediaType' => 'video',
                     'mediaSrc' => 'https://player.vimeo.com/external/447812236.sd.mp4?s=2f66f0ec51d8f95c4f5f13f8f0d6be9f64f9d95d&profile_id=165&oauth2_token_id=57447761',
@@ -50,6 +54,7 @@
                 ],
                 [
                     'title' => 'Vox Pops',
+                    'href' => '/services/vox-pops',
                     'description' => 'Engaging, authentic interview content captured efficiently and delivered at speed.',
                     'mediaType' => 'image',
                     'mediaSrc' => 'https://images.pexels.com/photos/373543/pexels-photo-373543.jpeg?auto=compress&cs=tinysrgb&w=1200',
@@ -57,6 +62,7 @@
                 ],
                 [
                     'title' => 'Events',
+                    'href' => '/services/events',
                     'description' => 'Dynamic event films that capture key moments, atmosphere, and audience energy — edited quickly for post-event promotion and social sharing.',
                     'mediaType' => 'image',
                     'mediaSrc' => 'https://images.pexels.com/photos/2774556/pexels-photo-2774556.jpeg?auto=compress&cs=tinysrgb&w=1200',
@@ -66,7 +72,7 @@
         @endphp
         <div class="card-grid six">
             @foreach ($services as $service)
-                <article class="card">
+                <a href="{{ $service['href'] }}" class="card">
                     <div class="card-media">
                         @if ($service['mediaType'] === 'video')
                             <video autoplay muted loop playsinline preload="metadata" poster="{{ $service['mediaPoster'] }}">
@@ -78,7 +84,7 @@
                     </div>
                     <h3>{{ $service['title'] }}</h3>
                     <p>{{ $service['description'] }}</p>
-                </article>
+                </a>
             @endforeach
         </div>
     </section>
